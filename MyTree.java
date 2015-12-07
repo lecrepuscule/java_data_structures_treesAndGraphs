@@ -1,5 +1,5 @@
 class myBinarySearchTree {
-  
+
   BSTNode root;
 
   public BSTNode insertIterative(int key, Object data){
@@ -22,6 +22,21 @@ class myBinarySearchTree {
         }
         n = n.right;
       }
+    }
+    return n;
+  }
+
+  public void insertRecursive(int key, Object data){
+    root = insertRecursive(root, key, data);
+  }
+
+  public BSTNode insertRecursive(BSTNode n, int key, Object data){
+    if (n == null) return new BSTNode(key, data);
+    if (n.key == key) return n;
+    if (n.key < key) {
+      n.right = insertRecursive(n.right, key, data);
+    } else {
+      n.left = insertRecursive(n.left, key, data);
     }
     return n;
   }
