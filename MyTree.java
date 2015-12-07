@@ -1,8 +1,29 @@
-class myBinarySearchTree<T implements Comparable<T>> implements Iterable<T>{
-  BSTNode<T> root;
+class myBinarySearchTree {
+  
+  BSTNode root;
 
-  public void insertIterative(Comparable key, AnyType data){
-
+  public BSTNode insertIterative(int key, Object data){
+    if (root == null) {
+        root = new BSTNode(key, data);
+        return root;
+    }
+    BSTNode n = root;
+    while (n.key != key) {
+      if (n.key > key) {
+        if (n.left == null) {
+            n.left = new BSTNode(key, data); 
+            return n.left;
+        }
+        n = n.left;
+      } else {
+        if (n.right == null) {
+            n.right = new BSTNode(key, data);
+            return n.right;
+        }
+        n = n.right;
+      }
+    }
+    return n;
   }
 
   public BSTNode search(int key){
@@ -13,17 +34,18 @@ class myBinarySearchTree<T implements Comparable<T>> implements Iterable<T>{
 
   }
 
-  private class BSTNode<T>{
-    Comparable<T> key;
+  private class BSTNode{
+    int key;
+    Object data;
     BSTNode left;
     BSTNode right;
-    public BSTNode(Comparable<T> key, Anytype data, BSTNode left, BSTNode right){
+    public BSTNode (int key, Object data, BSTNode left, BSTNode right){
       this.key = key;
       this.data = data;
       this.left = left;
       this.right = right;
     }
-    public BSTNode(Comparable<T> key, Anytype data){
+    public BSTNode (int key, Object data){
       this.key = key;
       this.data = data;
       this.left = null;
